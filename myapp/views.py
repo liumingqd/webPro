@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import pymysql
 # Create your views here.
+def first(request):
+    return HttpResponse("welcome")
+
 def list(request):
     conn=pymysql.connect(
         host='localhost',
@@ -12,6 +15,8 @@ def list(request):
         charset='utf8',
     )
     mycursor=conn.cursor()
-    mysql="SELECT * FROM staff"
-    mycursor.excute(mysql)
-    print(mycursor.rowcount)
+    mysql="SELECT * FROM student"
+    mycursor.execute(mysql)
+    # print(mycursor.rowcount)
+    print(mycursor.fetchall())
+    return render(request,"list.html")
