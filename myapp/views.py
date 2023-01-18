@@ -14,7 +14,7 @@ def list(request):
         db='coursemanage',
         charset='utf8',
     )
-    mycursor=conn.cursor()
+    mycursor=conn.cursor(cursor=pymysql.cursors.DictCursor)
     mysql="SELECT * FROM student"
     mycursor.execute(mysql)
     # print(mycursor.rowcount)
