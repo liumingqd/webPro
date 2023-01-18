@@ -15,8 +15,10 @@ def list(request):
         charset='utf8',
     )
     mycursor=conn.cursor(cursor=pymysql.cursors.DictCursor)
-    mysql="SELECT * FROM student"
-    mycursor.execute(mysql)
+    data=[("201441100003","池小薇","1998/03/04","100"),("201441100006","张华","1998/05/04","100"),("201441100004","杨晓们","1998/04/04","100"),]
+    mysql="INSERT INTO student(stuid,stuname,stubirthday,departmentid) values (%s,%s,%s,%s)"
+    mycursor.executemany(mysql,data)
     # print(mycursor.rowcount)
+    conn.commit()
     print(mycursor.fetchall())
     return render(request,"list.html")
