@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>
+            this is the regist web
+        </title>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        the regist
+        <form action="/user/regisHandle/" method="post">
+            {% csrf_token %}
+            <div>
+                <label>用户名</label>
+                <input type="text" name="username">
+            </div>
+            <div>
+                <label>密码</label>
+                <input type="password" name="pwd">
+            </div>
+            <div>
+                <label>邮箱</label>
+                <input id="btn" type="submit" value="注册">
+            </div>
+        </form>
+    </body>
+</html>
