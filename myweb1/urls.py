@@ -20,5 +20,6 @@ from myapp import views as myapp_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # url(r'^$',myapp_views.mytest),
     url(r'^$',myapp_views.list),
 ]

@@ -1,26 +1,68 @@
 <html>
-    <head>
-        <title>
-            this is the regist web
-        </title>
-        <meta charset="utf-8"/>
-    </head>
-    <body>
-        the regist
-        <form action="/user/regisHandle/" method="post">
-            {% csrf_token %}
-            <div>
-                <label>用户名</label>
-                <input type="text" name="username">
-            </div>
-            <div>
-                <label>密码</label>
-                <input type="password" name="pwd">
-            </div>
-            <div>
-                <label>邮箱</label>
-                <input id="btn" type="submit" value="注册">
-            </div>
-        </form>
-    </body>
+<head>
+    <title>
+        this is the regist web
+    </title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+    the regist
+    <form action="/user/regisHandle/" method="post">
+        {% csrf_token %}
+        <div>
+            <label>用户名</label>
+            <input type="text" name="username">
+        </div>
+        <div>
+            <label>密码</label>
+            <input type="password" name="pwd">
+        </div>
+        <div>
+            <label>邮箱</label>
+            <input id="btn" type="submit" value="注册">
+        </div>
+    </form>
+</body>
+<script>
+    
+    function sendDataToServer() {
+        $("form").ajaxSubmit(function(message){
+            console.log(JSON.parse(message));
+            var data=JSON.parse(message)
+            if(data["code"]==0){
+                alert(data["msg"])
+                location.href="/user/login"
+            }else{
+                alert(data["msg"])
+            }
+        })  
+    }
+    
+    function validate(){
+        $("form").validate({
+            rules:{
+                username:{
+                    required: true,
+                    minlength: 2,
+                    maxlength:10,
+                },
+                pwd:{
+                    required: true,
+                },
+                email:{
+                    email:true,
+                }    
+            },
+            messages:{
+                username:{
+                    required: "用户名不符合要求",
+                    minlength: "最小长度2",
+                    maxlength: "最大长度 10",
+                },
+            }
+        })
+    }
+
+  
+</script>
 </html>
